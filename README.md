@@ -7,8 +7,35 @@ No need to install Office. :smiley:
 Uses XPath to handle most XML structures. :astonished:  
 Built on .NET 4.  :smiling_imp:  
 
+Command usage
+--------------
 
-## Example 1
+```
+Usage: encodings
+  Lists all available encodings
+
+Usage: <xml in> <xml encoding> <word template> <word out> <items xpath> <{Paragr
+aph|Heading1|Heading2|Heading3}:{item xpath}:[attr name]:[format]}>+
+  Reads the XML file and create a Word document.
+
+  Item XPath exemples:
+    > Header2:./Fields/Field[Name='Title']:Value
+    Finds the <Field> element using the Name attribute.
+    Takes the value of the Value attribute
+
+    > Header2:./Fields/Field[Name='DateChanged']::DateChanged: {0}
+    Finds the <Field> element using the Name attribute.
+    Takes the value of the element.
+    The value is then formated to include a label in front of the value.
+
+About <word template>
+  A template is necessary in order to use titles.
+  You can find the default template in a path like this one:
+  C:\Program Files (x86)\Microsoft Office\Office15\1033\QuickStyles\Default.dotx
+```
+
+Example 1
+----------
 
 ### XML file
 
@@ -53,11 +80,13 @@ I build a paragraph that will contain the content of the "Value" attribute of th
 
 
 
-## Dependencies
+Dependencies
+----------------
 
 * Install [Open XML SDK 2.5](http://www.microsoft.com/en-us/download/details.aspx?id=30425)
 
-## Possible enhancements
+Possible enhancements
+----------------------
 
 - [ ] Specify the document title in arguments
 - [ ] Split into to phases: build variables from XML and then generate document
